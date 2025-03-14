@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template 6alh</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Template 6 ALH</h1>
+    <p>A tool for aligning images of <i>Drosophila</i> brains from 6 hour old larvea</p>
+    <p>To test this on your images, send me an email at <code>pnewstei@uoregon.edu</code></p>
+    <p>Installation instructions can be found on the GitHub repo: <a href="https://github.com/pnewstein/template6alh">github.com/pnewstein/template6alh</a></p>
+    <h2 id="quickstart">Quickstart</h2>
+<p>Three commands are neccisary to align to the template brain</p>
+<h3 id="import-data">Import data</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">t6alh</span> init-and-segment <span class="at">--root-dir</span> /storage/data <span class="at">--fasii-chan</span> 1 <span class="at">--neuropil-chan</span> 2 example1.czi example2.czi</span></code></pre></div>
+<ul>
+<li>Reads all scenes from czi files and caches the raw data</li>
+<li>Downloads templates</li>
+<li>Lowers the resolution of the file and classifies pixels as belonging
+to the neuropil</li>
+</ul>
+<h3 id="choose-landmarks">Choose landmarks</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">t6alh</span> make-landmarks</span></code></pre></div>
+<ul>
+<li>A custom GUI designed for use over ssh forwarding is used to select
+the landmarks</li>
+<li>landmarks are saved to the cache</li>
+</ul>
+<h3 id="align">Align</h3>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">t6alh</span> align</span></code></pre></div>
+<ul>
+<li>First register to the landmarks</li>
+<li>then register and warp to the mask template</li>
+<li>then register and warp to the FasII template</li>
+</ul>
+
+    <footer>
+        <p>
+            <a href="https://github.com/pnewstein/template6alh">Source code</a> | 
+            <a href="https://www.doelab.org/">Doe lab</a> | 
+            <a href="https://orcid.org/0000-0003-2966-783X">Orcid</a>
+        </p>
+    </footer>
+</body>
+</html>
+
