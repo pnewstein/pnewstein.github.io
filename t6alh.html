@@ -5,19 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Template 6alh</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-    <h1>Template 6 ALH</h1>
-    <p>A tool for aligning images of <i>Drosophila</i> brains from 6 hour old larvea</p>
-    <p>To test this on your images, send me an email at <code>pnewstei@uoregon.edu</code></p>
-    <p>Installation instructions can be found on the GitHub repo: <a href="https://github.com/pnewstein/template6alh">github.com/pnewstein/template6alh</a></p>
-    <h2 id="quickstart">Quickstart</h2>
-<p>Three commands are neccisary to align to the template brain</p>
+    <div class=logo-title>
+        <img src="logo.jpg" alt="Fasii tracts">
+        <h1>Template 6 ALH</h1>
+    </div>
+   <p class=accent>A tool for aligning images of <i>Drosophila</i> brains from 6 hour old larvea</p>
+     <ul>
+        <li>To test this on your images, send me an email at <code>pnewstei@uoregon.edu</code></li>
+        <li>Installation instructions can be found on the GitHub repo:
+            <a href="https://github.com/pnewstein/template6alh">github.com/pnewstein/template6alh</a>
+        </li>
+        <li>Code for generating alignments to TEM volume:
+            <a href="https://github.com/pnewstein/align-catmaid">github.com/pnewstein/align-catmaid</a>
+        </li>
+    </ul>
+    <h2 id="quick-start">Quick start</h2>
+<p>Three commands are necessary to align to the template brain</p>
 <h3 id="import-data">Import data</h3>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">t6alh</span> init-and-segment <span class="at">--root-dir</span> /storage/data <span class="at">--fasii-chan</span> 1 <span class="at">--neuropil-chan</span> 2 example1.czi example2.czi</span></code></pre></div>
 <ul>
-<li>Reads all scenes from czi files and caches the raw data</li>
+<li>Reads all scenes from zeiss czi files and caches the raw data</li>
 <li>Downloads templates</li>
 <li>Lowers the resolution of the file and classifies pixels as belonging
 to the neuropil</li>
@@ -41,8 +52,9 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="
 
     <footer>
         <p>
-            <a href="https://github.com/pnewstein/template6alh">Source code</a> | 
-            <a href="https://www.doelab.org/">Doe lab</a> | 
+            <a href="https://github.com/pnewstein/template6alh">Source code</a> |
+            <a href="t6alh-docs">Documentation</a> |
+            <a href="https://www.doelab.org/">Doe lab</a> |
             <a href="https://orcid.org/0000-0003-2966-783X">Orcid</a>
         </p>
     </footer>

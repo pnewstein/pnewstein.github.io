@@ -13,7 +13,7 @@
   --text: #212121;
   --text-light: #585858;
   --border: #898EA4;
-  --accent: #0d47a1;
+  --accent: #d700e6;
   --accent-hover: #1266e2;
   --accent-text: var(--bg);
   --code: #d81b60;
@@ -30,7 +30,7 @@
     --accent-bg: #2b2b2b;
     --text: #dcdcdc;
     --text-light: #ababab;
-    --accent: #ffb300;
+    --accent: #9928ff;
     --accent-hover: #ffe099;
     --accent-text: var(--bg);
     --code: #f06292;
@@ -72,7 +72,7 @@ body {
   font-size: 1.15rem;
   line-height: 1.5;
   display: grid;
-  grid-template-columns: 1fr min(45rem, 90%) 1fr;
+  grid-template-columns: 1fr min(60rem, 90%) 1fr;
   margin: 0;
 }
 body > * {
@@ -751,4 +751,50 @@ sub {
   pre code {
     white-space: pre-wrap;
   }
+}
+
+.logo-title {
+    display: flex;
+    align-items: top;
+}
+.logo-title img {
+    height: 200px;
+    margin-right: 10px;
+}
+.accent {
+    color: var(--accent);
+    font-size: 1.3rem;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 200px; /* adjust width as needed */
+  overflow-y: auto; /* enables vertical scrolling */
+  padding: 1rem; /* optional spacing */
+}
+
+.main-content {
+  margin-left: 150px; /* ensures content doesn't overlap with the nav */
+  padding: 1rem;
+}
+
+@media (max-width: 500px) { /* Adjust width as needed */
+  nav {
+    display: none;
+  }
+
+  .main-content {
+    margin-left: 0; /* Remove margin when nav is hidden */
+  }
+}
+nav ul {
+  padding-left: 10px; /* Reduce left padding */
+  margin-left: 0; /* Remove extra margin if present */
+}
+
+nav li {
+  padding-left: 5px; /* Fine-tune indentation for list items */
 }

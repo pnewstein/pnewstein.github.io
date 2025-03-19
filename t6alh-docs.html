@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T6ALH</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <nav id="TOC" role="doc-toc">
+        <p class=accent> T6alh CLI tools</p>
+        <ul>
+        <li><a href="#considerations-for-all-commands"
+        id="toc-considerations-for-all-commands">Considerations for all
+        commands</a></li>
+        <li><a href="#align-commands" id="toc-align-commands">Align
+        commands</a>
+        <ul>
+        <li><a href="#init-and-segment"
+        id="toc-init-and-segment">init-and-segment</a>
+        <ul>
+        <li><a href="#init" id="toc-init">init</a></li>
+        <li><a href="#add-more-raw"
+        id="toc-add-more-raw">add-more-raw</a></li>
+        </ul></li>
+        <li><a href="#make-landmarks" id="toc-make-landmarks">Make
+        landmarks</a></li>
+        </ul></li>
+        <li><a href="#align" id="toc-align">Align</a></li>
+        <li><a href="#template-creation-commands"
+        id="toc-template-creation-commands">Template creation
+        commands</a></li>
+        <li><a href="#miscellaneous-commands"
+        id="toc-miscellaneous-commands">Miscellaneous commands</a></li>
+        </ul>
+    </nav>
+    <main class=main-content>
+        <div class=logo-title>
+            <img src="logo.jpg" alt="Fasii tracts">
+            <h1>Template 6 ALH Documentation</h1>
+        </div>
+        <h2 id="considerations-for-all-commands">Considerations for all
+        commands</h2>
+        <ul>
+        <li>t6alh organizes images in to folders with names like
+        <code>001</code> where each folder corresponds to a confocal
+        acquisition, such as a czi scene</li>
+        <li>Most commands have optional arguments for a variable number
+        folder names. Or an –image-folders-file argument which is the
+        path to a file with this information</li>
+        </ul>
+        <h2 id="align-commands">Align commands</h2>
+        <p>These commands are used to align your images to the template
+        image</p>
+        <h3 id="init-and-segment">init-and-segment</h3>
+        <p class="accent">
+        This command runs the following subcommands in order to
+        initialize a database and segment the neuropil
+        </p>
+        <pre><code>Usage: t6alh init-and-segment [OPTIONS]
+                              [RAW_FILES]...
+
+  Takes a list of microscopy files and initializes
+  the db making a cache of all of the images, also
+  segments the image.
+
+  t6alh init-and-segment /storage/1.czi /storage/2.czi         --root-dir ~/t6alh-cache --neuropil-chan 1 --fasii-chan 2
+
+Options:
+  -r, --root-dir DIRECTORY     the path where data
+                               is cached.
+  -n, --neuropil-chan INTEGER  Channel labeling
+                               the neuropil (1
+                               indexed)
+  -f, --fasii-chan INTEGER     Channel labeling
+                               the FasII tracts (1
+                               indexed)
+  -e, --eve-chan INTEGER       Channel labeling
+                               the FasII tracts (1
+                               indexed)
+  -s, --new-scale FLOAT        the output scale in
+                               um. Default is 1.
+                               negative numbers
+                               are interpreted as
+                               no new scale
+  -o, --opening-size FLOAT     the size for which
+                               smaller objects
+                               will be removed.
+                               default 1um
+  -g, --gamma FLOAT            gamma correction
+                               for the image.
+                               default: 2
+  --help                       Show this message
+                               and exit.</code></pre>
+        <h4 id="init">init</h4>
+        <p class="accent">
+        Initialize the database caching raw files
+        </p>
+        <pre><code>Usage: t6alh init [OPTIONS] [RAW_FILES]...
+
+  Takes a list of microscopy files and initializes
+  a sqlite db making a cache of all of the images
+
+Options:
+  -r, --root-dir DIRECTORY     the path where data
+                               is cached.
+  -n, --neuropil-chan INTEGER  Channel labeling
+                               the neuropil (1
+                               indexed)
+  -f, --fasii-chan INTEGER     Channel labeling
+                               the FasII tracts (1
+                               indexed)
+  -e, --eve-chan INTEGER       Channel labeling
+                               the FasII tracts (1
+                               indexed)
+  --help                       Show this message
+                               and exit.</code></pre>
+        <h4 id="add-more-raw">add-more-raw</h4>
+        <p class="accent">
+        Add more raw files to exisiting database
+        </p>
+        <pre><code>Usage: t6alh add-more-raw [OPTIONS] [RAW_FILES]...
+
+  Takes a list of microscopy files to add to the
+  db. Uses similar arguments to t6alh init
+
+Options:
+  -n, --neuropil-chan INTEGER  Channel labeling
+                               the neuropil (1
+                               indexed)
+  -f, --fasii-chan INTEGER     Channel labeling
+                               the FasII tracts (1
+                               indexed)
+  -e, --eve-chan INTEGER       Channel labeling
+                               the FasII tracts (1
+                               indexed)
+  --help                       Show this message
+                               and exit.</code></pre>
+        <h3 id="make-landmarks">Make landmarks</h3>
+        <h2 id="align">Align</h2>
+        <h2 id="template-creation-commands">Template creation
+        commands</h2>
+        <h2 id="miscellaneous-commands">Miscellaneous commands</h2>
+        <footer>
+            <p>
+                <a href="https://github.com/pnewstein/template6alh">Source code</a> | 
+                <a href="https://www.doelab.org/">Doe lab</a> | 
+                <a href="https://orcid.org/0000-0003-2966-783X">Orcid</a>
+            </p>
+        </footer>
+    </main>
+</body>
+</html>
