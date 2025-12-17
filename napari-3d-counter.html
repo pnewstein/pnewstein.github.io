@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Napari-3D-Counter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav id="TOC" role="doc-toc">
+        <ul>
+        <li><a href="#napari-3d-counter"
+        id="toc-napari-3d-counter">Napari-3D-Counter</a>
+        <ul>
+        <li><a href="#prerequisites"
+        id="toc-prerequisites">Prerequisites</a></li>
+        <li><a href="#installation"
+        id="toc-installation">Installation</a></li>
+        <li><a href="#count3d-usage" id="toc-count3d-usage">Count3D
+        Usage</a>
+        <ul>
+        <li><a href="#adding-a-cell" id="toc-adding-a-cell">Adding a
+        cell</a></li>
+        <li><a href="#changing-cell-type"
+        id="toc-changing-cell-type">Changing cell type</a></li>
+        <li><a href="#undo-last-added-cell"
+        id="toc-undo-last-added-cell">Undo last added cell</a></li>
+        <li><a href="#remove-a-particular-cell"
+        id="toc-remove-a-particular-cell">Remove a particular
+        cell</a></li>
+        <li><a href="#change-appearance-of-a-cell-type"
+        id="toc-change-appearance-of-a-cell-type">Change appearance of a
+        cell type</a></li>
+        <li><a href="#save-configuration"
+        id="toc-save-configuration">Save configuration</a></li>
+        <li><a href="#save-cells" id="toc-save-cells">Save
+        cells</a></li>
+        <li><a href="#load-cells" id="toc-load-cells">Load
+        cells</a></li>
+        <li><a href="#launch-with-saved-configuration"
+        id="toc-launch-with-saved-configuration">Launch with saved
+        configuration</a></li>
+        </ul></li>
+        <li><a href="#auxiliary-plugins"
+        id="toc-auxiliary-plugins">Auxiliary plugins</a>
+        <ul>
+        <li><a href="#ingress-points" id="toc-ingress-points">Ingress
+        Points</a></li>
+        <li><a href="#split-on-shapes" id="toc-split-on-shapes">Split on
+        Shapes</a></li>
+        <li><a href="#reconstruct-selected"
+        id="toc-reconstruct-selected">Reconstruct Selected</a></li>
+        </ul></li>
+        <li><a href="#contributing"
+        id="toc-contributing">Contributing</a></li>
+        <li><a href="#license" id="toc-license">License</a></li>
+        <li><a href="#issues" id="toc-issues">Issues</a></li>
+        </ul></li>
+        </ul>
+    </nav>
+    <main class=main-content>
+        <h1 id="napari-3d-counter">Napari-3D-Counter</h1>
+        <p><a
+        href="https://github.com/pnewstein/napari-3d-counter/raw/main/LICENSE"><img
+        src="https://img.shields.io/pypi/l/napari-3d-counter.svg?color=green"
+        alt="License GNU GPL v3.0" /></a> <a
+        href="https://pypi.org/project/napari-3d-counter"><img
+        src="https://img.shields.io/pypi/v/napari-3d-counter.svg?color=green"
+        alt="PyPI" /></a> <a href="https://python.org"><img
+        src="https://img.shields.io/pypi/pyversions/napari-3d-counter.svg?color=green"
+        alt="Python Version" /></a> <a
+        href="https://github.com/pnewstein/napari-3d-counter/actions"><img
+        src="https://github.com/pnewstein/napari-3d-counter/workflows/tests/badge.svg"
+        alt="tests" /></a> <a
+        href="https://codecov.io/gh/pnewstein/napari-3d-counter"><img
+        src="https://codecov.io/gh/pnewstein/napari-3d-counter/branch/main/graph/badge.svg"
+        alt="codecov" /></a> <a
+        href="https://napari-hub.org/plugins/napari-3d-counter"><img
+        src="https://img.shields.io/endpoint?url=https://api.napari-hub.org/shields/napari-3d-counter"
+        alt="napari hub" /></a></p>
+        <p>A plugin for manually counting objects in 3D images</p>
+        <figure>
+        <img
+        src="https://github.com/pnewstein/napari-3d-counter/assets/30813691/9d524c31-f23b-4b34-bcb6-ec3bb415cdae"
+        alt="small" />
+        <figcaption aria-hidden="true">small</figcaption>
+        </figure>
+        <hr />
+        <p>This <a href="https://github.com/napari/napari">napari</a>
+        plugin was generated with <a
+        href="https://github.com/audreyr/cookiecutter">Cookiecutter</a>
+        using <span class="citation"
+        data-cites="napari">@napari</span>’s <a
+        href="https://github.com/napari/cookiecutter-napari-plugin">cookiecutter-napari-plugin</a>
+        template.</p>
+        <h2 id="prerequisites">Prerequisites</h2>
+        <p>It is recommended to use conda to install Napari-3D-Counter
+        and napari. Installation instructions for the miniconda
+        distribution of conda can be found here:</p>
+        <p><a
+        href="https://www.anaconda.com/docs/getting-started/miniconda/install">https://www.anaconda.com/docs/getting-started/miniconda/install</a></p>
+        <h2 id="installation">Installation</h2>
+        <p>You can install <code>napari-3d-counter</code> via conda</p>
+        <pre><code>conda create -n n3dc-env -c conda-forge -y napari napari-3d-counter pyqt python=3.12
+conda activate n3dc-env</code></pre>
+        <p>pip</p>
+        <pre><code>pip install napari-3d-counter</code></pre>
+        <details>
+        <summary>
+        Troubleshooting
+        </summary>
+        <p>If above conda and pip installs do not work. follow <a
+        href="https://napari.org/stable/tutorials/fundamentals/installation.html">the
+        instructions</a> to get a working napari installation. Then
+        install napari-3d counter into that environment:</p>
+        <pre><code>conda activate napari-env
+pip install napari-3d-counter</code></pre>
+        </details>
+        <h2 id="count3d-usage">Count3D Usage</h2>
+        <ol type="1">
+        <li>First launch napari with the <code>napari</code>
+        command.</li>
+        <li>Count3D can be launched from the plugin menu of napari, or
+        through the command palette (Ctrl+Shift+P). Select Count3D.</li>
+        </ol>
+        <div>
+        <h4>
+        TIP:
+        </h4>
+        <p>
+        Count can also be launched with
+        <code>examples/launch_count_3d.py</code>
+        </p>
+        </div>
+        <p>This will spawn several <a
+        href="https://napari.org/stable/howtos/layers/points.html">Points
+        Layers</a>:</p>
+        <h5 id="point-adder">Point adder</h5>
+        <p>This layer acts as the interface for napari-3d-counter. Any
+        points added to this layer are dispatched into the appropriate
+        data layer labeled by the GUI. <em>Any other actions to this
+        layer has no effects</em></p>
+        <h5 id="cell-type-n">Cell Type N</h5>
+        <p>These are the data layers. The points actually live in these
+        layers, and you can edit the style or delete individual points
+        here.</p>
+        <h5 id="out-of-slice">out of slice</h5>
+        <p>This contains the x and y of all points in all layers. This
+        may be useful to keep track of what regions of the data have
+        been annotated.</p>
+        <h3 id="adding-a-cell">Adding a cell</h3>
+        <p>You can add a cell of the currently selected cell type by
+        clicking on the viewer. The counter on the current cell type’s
+        button (on the right side of the screen) will be
+        incremented.</p>
+        <details>
+        <summary>
+        Troubleshooting
+        </summary>
+        <h4 id="no-cell-was-added">No cell was added</h4>
+        <ul>
+        <li>Ensure that <code>Point adder</code> layer is selected</li>
+        <li>Ensure that <code>Add points</code> tool is selected</li>
+        <li>Ensure that there are no image layers obscuring the layers
+        spawned by napari</li>
+        <li>Click on the viewer where you would like the point to be
+        added</li>
+        </ul>
+        <h4 id="the-cell-marker-is-the-wrong-size">The cell marker is
+        the wrong size</h4>
+        <ul>
+        <li>See <a
+        href="https://github.com/pnewstein/napari-3d-counter#change-appearance-of-a-cell-type">Change
+        appearance of a cell type</a></li>
+        <li>Use the <code>point size</code> slider</li>
+        </ul>
+        </details>
+        <video controls>
+        <source src="https://github.com/pnewstein/napari-3d-counter/assets/30813691/745d495e-1d18-43dd-aa5e-e9ecd835cdae" type="video/mp4">
+        </source>
+        Your browser does not support the video tag.
+        </video>
+        <h3 id="changing-cell-type">Changing cell type</h3>
+        <p>You can change the currently selected cell type by clicking
+        on that cell type’s button. This change will be reflected in the
+        the color and text of the first box in the GUI. Now any clicks
+        to the canvas will be added to that type.</p>
+        <p>Additionally, the keyboard shortcut for that cell type can be
+        used. Keyboard shortcuts are listed on the button, and are “q”,
+        “w”, “e”, “r”, “t”, “y” by default</p>
+        <video controls>
+        <source src="https://github.com/pnewstein/napari-3d-counter/assets/30813691/844d04ce-2795-4226-a98b-d5fe5a0b131e" type="video/mp4">
+        </source>
+        Your browser does not support the video tag.
+        </video>
+        <h3 id="undo-last-added-cell">Undo last added cell</h3>
+        <p>The undo button (shortcut u) will remove last added cell,
+        regardless of cell type. This will change both remove the cell
+        from the canvas and decrease the count in the appropriate
+        type.</p>
+        <video controls>
+        <source src="https://github.com/pnewstein/napari-3d-counter/assets/30813691/c04ca5e3-9f48-4dd5-89e5-a9866b353e03" type="video/mp4">
+        </source>
+        Your browser does not support the video tag.
+        </video>
+        <h3 id="remove-a-particular-cell">Remove a particular cell</h3>
+        <p>To remove a particular cell, change to the layer containing
+        the cell you would like to remove. Then select the
+        <code>select points</code> tool (arrow) to select the points to
+        delete, then use <code>Delete selected points</code> (x) to
+        delete those points</p>
+        <p>This change will be reflected in the counts.</p>
+        <div>
+        <h4>
+        TIP:
+        </h4>
+        <p>
+        Ensure that the corect napari cell type layer is selected
+        </p>
+        </div>
+        <video controls>
+        <source src="https://github.com/pnewstein/napari-3d-counter/assets/30813691/d0787cba-9b23-46d5-9cd3-21a4ad73460a" type="video/mp4">
+        </source>
+        Your browser does not support the video tag.
+        </video>
+        <h3 id="change-appearance-of-a-cell-type">Change appearance of a
+        cell type</h3>
+        <p>Changes to the name or edge color of a points layer will be
+        reflected in the previously added points, as well as the GUI.
+        Features that are editable in this way include:</p>
+        <ul>
+        <li>face color</li>
+        <li>edge color</li>
+        <li>symbol</li>
+        <li>point size</li>
+        </ul>
+        <div>
+        <h4>
+        TIP:
+        </h4>
+        <p>
+        Ensure that the corect napari cell type layer is selected
+        </p>
+        </div>
+        <video controls>
+        <source src="https://github.com/pnewstein/napari-3d-counter/assets/30813691/6c495270-d4c4-473e-9091-8d2e0f8e2764" type="video/mp4">
+        </source>
+        Your browser does not support the video tag.
+        </video>
+        <h3 id="save-configuration">Save configuration</h3>
+        <p>Use the <code>Make launch_cell_count.py</code> button to
+        create a python script that will launch napari with 3DCounter
+        added to the dock and with all cell type appearances. This
+        functions to save any manual changes you made to the appearance
+        of a cell type between sessions.</p>
+        <video controls>
+        <source src="https://github.com/pnewstein/napari-3d-counter/assets/30813691/3448652d-3064-4900-8bbe-e88d75667108" type="video/mp4">
+        </source>
+        Your browser does not support the video tag.
+        </video>
+        <h3 id="save-cells">Save cells</h3>
+        <p>Use the “Save cells” button to save the cell coordinates for
+        all layers into a csv file. This saves the coordinates and the
+        names of each of the cells.</p>
+        <video controls>
+        <source src="https://github.com/pnewstein/napari-3d-counter/assets/30813691/38b30f2a-cc83-46c2-8b19-4d44715c07c5" type="video/mp4">
+        </source>
+        Your browser does not support the video tag.
+        </video>
+        <h3 id="load-cells">Load cells</h3>
+        <p>Use the “Load cells” button to load the cells from a csv file
+        into new layers</p>
+        <video controls>
+        <source src="https://github.com/pnewstein/napari-3d-counter/assets/30813691/7df74688-85b1-4b61-aa51-dab179763832" type="video/mp4">
+        </source>
+        Your browser does not support the video tag.
+        </video>
+        <div>
+        <h4>
+        TIP:
+        </h4>
+        <p>
+        A csv file can be dragged into the viewer to load the cells
+        </p>
+        </div>
+        <h3 id="launch-with-saved-configuration">Launch with saved
+        configuration</h3>
+        <p>To run Count3D with custom configuration, paste the following
+        code into your napari ipython console</p>
+        <div class="sourceCode" id="cb4"><pre
+        class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> napari_3d_counter <span class="im">import</span> Count3D, CellTypeConfig</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>cell_type_config <span class="op">=</span> [</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The first cell type is called &quot;cq+eve+&quot; and should be green</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    CellTypeConfig(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span><span class="st">&quot;cq+eve+&quot;</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">&quot;g&quot;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The first cell type is called &quot;cq+eve-&quot; and should be cyan</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    CellTypeConfig(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span><span class="st">&quot;cq+eve-&quot;</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">&quot;c&quot;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The first cell type is called &quot;cq-eve+&quot; and should be red</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    CellTypeConfig(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span><span class="st">&quot;cq-eve+&quot;</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">&quot;r&quot;</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch the plugin with configuration</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>viewer.window.add_dock_widget(Count3D(viewer, cell_type_config<span class="op">=</span>cell_type_config))</span></code></pre></div>
+        <p><em>Usage example can be found in
+        /example/launch_count_3d.py</em></p>
+        <h2 id="auxiliary-plugins">Auxiliary plugins</h2>
+        <h3 id="ingress-points">Ingress Points</h3>
+        <figure>
+        <img
+        src="https://github.com/user-attachments/assets/2b0dc92b-ae14-40e0-8670-0d99f36b3468"
+        alt="Ingress Points" />
+        <figcaption aria-hidden="true">Ingress Points</figcaption>
+        </figure>
+        <p>This plugin takes a points layer and adds the points to the
+        selected cell type layer. This can be useful if you want to
+        manually count cells after cell identification.</p>
+        <p><em>Usage example can be found in
+        /example/launch_ingress_points.py</em></p>
+        <h3 id="split-on-shapes">Split on Shapes</h3>
+        <figure>
+        <img
+        src="https://github.com/user-attachments/assets/0d3c12fc-1347-4226-a9b9-9e34dd50577a"
+        alt="Split on Shapes" />
+        <figcaption aria-hidden="true">Split on Shapes</figcaption>
+        </figure>
+        <p>This plugin can be used to subset a cell type into several
+        groups based on their x-y location. Simply draw a shape that
+        surrounds your cells (perhaps in a segment of segmentaly
+        repeating tissue) and run this plugin to get a list of cells of
+        each type in each shape.</p>
+        <p><em>Usage example can be found in
+        /example/launch_split_on_shapes.py</em></p>
+        <h3 id="reconstruct-selected">Reconstruct Selected</h3>
+        <figure>
+        <img
+        src="https://github.com/user-attachments/assets/2f629b5a-d976-4add-8c5b-af4fc7e45729"
+        alt="Reconstruct Selected" />
+        <figcaption aria-hidden="true">Reconstruct Selected</figcaption>
+        </figure>
+        <p>One use case of Napari 3D Counter is to visualize a subset of
+        labeled cells. For example, automated process label your cells
+        of interest as well as a set of off-target cells, and you would
+        like to visualize only your cells of interest. This can be
+        accomplished by using Napari 3D Counter to count your cells of
+        interest, and some other process to create labels (perhaps <a
+        href="https://github.com/haesleinhuepf/napari-segment-blobs-and-things-with-membranes">nsbatwm</a>)
+        and using Reconstruct Selected to create a new image layer of
+        those labels which have been counted as a particular cell
+        type.</p>
+        <p><em>Usage example can be found in
+        /example/launch_reconstruct_selected.py</em></p>
+        <h2 id="contributing">Contributing</h2>
+        <p>Contributions are very welcome. However, code written by LLMs
+        is not welcome. Tests can be run with <a
+        href="https://tox.wiki/en/latest/">tox</a>, please ensure the
+        coverage at least stays the same before you submit a pull
+        request.</p>
+        <p>To contribute, first fork and clone the repository on GitHub:
+        (GitHub
+        docs)[https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo]</p>
+        <p>Then install localy:</p>
+        <pre><code>cd napari-3d-counter
+pip install -e &#39;.[testing]&#39;</code></pre>
+        <p>Run unit tests:</p>
+        <pre><code>pytest</code></pre>
+        <p>Run full test suite, ensuring it installs properly:</p>
+        <pre><code>tox</code></pre>
+        <h2 id="license">License</h2>
+        <p>Distributed under the terms of the <a
+        href="http://www.gnu.org/licenses/gpl-3.0.txt">GNU GPL v3.0</a>
+        license, “napari-3d-counter” is free and open source
+        software</p>
+        <h2 id="issues">Issues</h2>
+        <p>If you encounter any problems, please <a
+        href="https://github.com/pnewstein/napari-3d-counter/issues">file
+        an issue</a> along with a detailed description.</p>
+        <footer>
+            <p>
+                <a href="https://github.com/pnewstein/napari-3d-counter">Source code</a> | 
+                <a href="https://www.doelab.org/">Doe lab</a> | 
+                <a href="https://orcid.org/0000-0003-2966-783X">Orcid</a> |
+                <a href="https://github.com/openjournals/joss-reviews/issues/9091">Joss Review</a>
+            </p>
+        </footer>
+    </main>
+</body>
+</html>

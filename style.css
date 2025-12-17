@@ -798,3 +798,9 @@ nav ul {
 nav li {
   padding-left: 5px; /* Fine-tune indentation for list items */
 }
+
+div {
+    background-color: var(--accent-bg);
+    margin: 20px;
+    padding: 10px;
+}
